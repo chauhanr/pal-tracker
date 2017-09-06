@@ -11,7 +11,7 @@ import java.util.List;
 public class TimeEntryController {
 
     private TimeEntryRepository timeEntriesRepo;
-    
+
 
     public TimeEntryController(TimeEntryRepository timeEntriesRepo) {
         this.timeEntriesRepo = timeEntriesRepo;
