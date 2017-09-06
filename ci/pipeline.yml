@@ -32,7 +32,7 @@ resources:
     organization: {{cf-org}}
     space: review
 
-- name: production-deloyment
+- name: production-deployment
   type: cf
   source:
     api: {{cf-api-url}}
@@ -55,30 +55,29 @@ jobs:
       file: build-output/pal-tracker-*.jar
   - put: version
     params:
-       file: version/number
+      file: version/number
 
+- name: deploy-review
+  plan:
+  - get: pal-tracker
+  - get: pal-tracker-artifacts
+    trigger: true
+    passed: [build]
+  - put: review-deployment
+    params:
+      manifest: pal-tracker/manifest-review.yml
+      path: pal-tracker-artifacts/pal-tracker-*.jar
+      environment_variables:
+        WELCOME_MESSAGE: "Hello from the review environment"
 
- - name: deploy-review
-   plan:
-   - get: pal-tracker
-   - get: pal-tracker-artifacts
-     trigger: true
-     passed: [build]
-   - put: review-deployment
-     params:
-       manifest: pal-tracker/manifest-review.yml
-       path: pal-tracker-artifacts/pal-tracker-*.jar
-       environment_variables:
-         WELCOME_MESSAGE: "Hello from the review environment"
-
- - name: deploy-production
-   plan:
-   - get: pal-tracker
-   - get: pal-tracker-artifacts
-     passed: [deploy-review]
-   - put: production-deployment
-     params:
-       manifest: pal-tracker/manifest-production.yml
-       path: pal-tracker-artifacts/pal-tracker-*.jar
-       environment_variables:
-         WELCOME_MESSAGE: "Hello from the production environment"
+- name: deploy-production
+  plan:
+  - get: pal-tracker
+  - get: pal-tracker-artifacts
+    passed: [deploy-review]
+  - put: production-deployment
+    params:
+      manifest: pal-tracker/manifest-production.yml
+      path: pal-tracker-artifacts/pal-tracker-*.jar
+      environment_variables:
+        WELCOME_MESSAGE: "Hello from the production environment"
