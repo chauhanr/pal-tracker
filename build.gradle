@@ -37,7 +37,7 @@ test.environment([
 
 flyway {
     url = developmentDbUrl
-    user = ""
+    user = "tracker"
     password = ""
     locations = ["filesystem:databases/tracker/migrations"]
 }
