@@ -1,6 +1,15 @@
 package io.pivotal.pal.tracker;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity(name = "time_entries")
 public class TimeEntry {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private long projectId;
     private long userId;

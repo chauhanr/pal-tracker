@@ -1,5 +1,6 @@
 package io.pivotal.pal.tracker;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
-public class JdbcTimeEntryRepository implements TimeEntryRepository {
+public class JdbcTimeEntryRepository implements TimeEntryRepository{
 
     private final JdbcTemplate jdbcTemplate;
 
