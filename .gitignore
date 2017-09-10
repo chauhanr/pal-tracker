@@ -2,4 +2,5 @@ build
 .gradle
 .idea
 *.iml
+local.properties
 ci/variables.yml
