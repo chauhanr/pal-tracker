@@ -46,11 +46,14 @@ test.environment([
 
 flyway {
     url = developmentDbUrl
-    user = "tacker"//localProperties.get("dev.db.username") //"tracker"
-    password = "" //localProperties.get("dev.db.password")//""
+    user = "tracker"
+    password = ""
     locations = ["filesystem:databases/tracker/migrations"]
 }
 
 task testMigrate(type: FlywayMigrateTask) {
     url = testDbUrl
 }
+
+//localProperties.get("dev.db.username") //"tracker"
+//localProperties.get("dev.db.password")//""
