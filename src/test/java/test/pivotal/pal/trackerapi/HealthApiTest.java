@@ -34,5 +34,6 @@ public class HealthApiTest {
         assertThat(healthJson.read("$.status", String.class)).isEqualTo("UP");
         assertThat(healthJson.read("$.db.status", String.class)).isEqualTo("UP");
         assertThat(healthJson.read("$.diskSpace.status", String.class)).isEqualTo("UP");
+        //assertThat(healthJson.read("$.db.database",String.class)).isEqualTo("MYSQL");
     }
 }

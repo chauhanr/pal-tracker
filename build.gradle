@@ -18,6 +18,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("mysql:mysql-connector-java:6.0.6")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     testCompile ("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -30,7 +31,8 @@ bootRun.environment([
         "WELCOME_MESSAGE": "hello",
         "SPRING_DATASOURCE_URL": developmentDbUrl,
         "PORT": "8080",
-        "MEMORY_LIMIT": "1gb"
+        "MEMORY_LIMIT": "1gb",
+        "MANAGEMENT_SECURITY_ENABLED": false,
 ])
 
 
@@ -39,6 +41,7 @@ def testDbUrl = "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=fa
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
         "SPRING_DATASOURCE_URL": testDbUrl,
+        "MANAGEMENT_SECURITY_ENABLED": false,
 ])
 
 flyway {
